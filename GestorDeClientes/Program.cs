@@ -1,52 +1,74 @@
-﻿namespace GestorDeClientes
+﻿namespace GestorDeClientes;
+
+class Program
 {
     [Serializable]
     struct Contato { public string nome, email, cpf; }
+    static List<Contato> contatos = new List<Contato>();
+
     enum Menu { Adicionar = 1, Listar = 2, Editar = 3, Sair = 4 }
-    class Program
+
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {                
 
-            bool sairApp = false;
-            while(!sairApp)
-            {
-                Console.WriteLine("Bem vindo ao app Gestor de Clientes");
-                Console.WriteLine("Selecione a opção desejada:\n");
-                Console.WriteLine("1 - Adicionar novo contato\n" +
-                    "2 - Listar contatos adicionados\n" +
-                    "3 - Editar contatos\n" +
-                    "4 - Sair do Gestor de Clientes\n");
-
-                Menu menu = new Menu();
-                menu = (Menu)int.Parse(Console.ReadLine());
-
-                switch (menu)
-                {                    
-                    case Menu.Adicionar:
-                        Adicionar();
-                        break;
-                    case Menu.Listar:
-                        break;
-                    case Menu.Editar:
-                        break;
-                    case Menu.Sair:
-                        sairApp = true;
-                        break;
-                }
-                Console.Clear();
-            }
-        }
-        static void Adicionar()
+        bool sairApp = false;
+        while (!sairApp)
         {
-            Contato cliente = new Contato();
-            Console.WriteLine("Entre com os dados do cliente");
-            Console.WriteLine("Nome: ");
-            cliente.nome = Console.ReadLine();
-            Console.WriteLine("E-mail: ");
-            cliente.email = Console.ReadLine();
-            Console.WriteLine("CPF: ");
-            cliente.cpf = Console.ReadLine();
+            Console.WriteLine("Bem vindo ao app Gestor de Clientes");
+            Console.WriteLine("Selecione a opção desejada:\n");
+            Console.WriteLine("1 - Adicionar novo contato\n" +
+                "2 - Listar contatos adicionados\n" +
+                "3 - Editar contatos\n" +
+                "4 - Sair do Gestor de Clientes\n");
+
+            Menu menu = new Menu();
+            menu = (Menu)int.Parse(Console.ReadLine());
+
+            switch (menu)
+            {
+                case Menu.Adicionar:
+                    Adicionar();
+                    break;
+                case Menu.Listar:
+                    Listar();
+                    break;
+                case Menu.Editar:
+                    break;
+                case Menu.Sair:
+                    sairApp = true;
+                    break;
+            }
+            Console.Clear();
         }
+    }
+    static void Adicionar()
+    {
+        Contato cliente = new Contato();
+        Console.WriteLine("Entre com os dados do cliente");
+        Console.WriteLine("Nome: ");
+        cliente.nome = Console.ReadLine();
+        Console.WriteLine("E-mail: ");
+        cliente.email = Console.ReadLine();
+        Console.WriteLine("CPF: ");
+        cliente.cpf = Console.ReadLine();
+
+        contatos.Add(cliente);
+    }
+
+    static void Listar()
+    {
+        System.Console.WriteLine("Lista de clientes adicionadas\n");
+        int i = 0;        
+        foreach (Contato contato in contatos)
+        {
+            System.Console.WriteLine($"ID: {i}");
+            System.Console.WriteLine($"Nome: {contato.nome}");
+            System.Console.WriteLine($"E-mail: {contato.email}");
+            System.Console.WriteLine($"CPF: {contato.cpf}");
+            i++;
+            System.Console.WriteLine("*****************************");
+        }
+        System.Console.WriteLine("Aperte enter para sair");
+        Console.ReadLine();
     }
 }
