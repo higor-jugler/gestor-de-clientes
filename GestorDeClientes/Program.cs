@@ -1,5 +1,7 @@
 ﻿namespace GestorDeClientes
 {
+    [Serializable]
+    struct Contato { public string nome, email, cpf; }
     enum Menu { Adicionar = 1, Listar = 2, Editar = 3, Sair = 4 }
     class Program
     {
@@ -22,6 +24,7 @@
                 switch (menu)
                 {                    
                     case Menu.Adicionar:
+                        Adicionar();
                         break;
                     case Menu.Listar:
                         break;
@@ -33,6 +36,17 @@
                 }
                 Console.Clear();
             }
+        }
+        static void Adicionar()
+        {
+            Contato cliente = new Contato();
+            Console.WriteLine("Entre com os dados do cliente");
+            Console.WriteLine("Nome: ");
+            cliente.nome = Console.ReadLine();
+            Console.WriteLine("E-mail: ");
+            cliente.email = Console.ReadLine();
+            Console.WriteLine("CPF: ");
+            cliente.cpf = Console.ReadLine();
         }
     }
 }
