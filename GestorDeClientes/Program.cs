@@ -57,16 +57,24 @@ class Program
 
     static void Listar()
     {
-        System.Console.WriteLine("Lista de clientes adicionadas\n");
-        int i = 0;        
-        foreach (Contato contato in contatos)
+        if (contatos.Count > 0)
         {
-            System.Console.WriteLine($"ID: {i}");
-            System.Console.WriteLine($"Nome: {contato.nome}");
-            System.Console.WriteLine($"E-mail: {contato.email}");
-            System.Console.WriteLine($"CPF: {contato.cpf}");
-            i++;
-            System.Console.WriteLine("*****************************");
+            System.Console.WriteLine("Lista de clientes adicionadas\n");
+            int i = 0;
+
+            foreach (Contato contato in contatos)
+            {
+                System.Console.WriteLine($"ID: {i}");
+                System.Console.WriteLine($"Nome: {contato.nome}");
+                System.Console.WriteLine($"E-mail: {contato.email}");
+                System.Console.WriteLine($"CPF: {contato.cpf}");
+                i++;
+                System.Console.WriteLine("*****************************");
+            }
+        }
+        else
+        {
+            System.Console.WriteLine("Não foi encontrato nenhum dado na base.");
         }
         System.Console.WriteLine("Aperte enter para sair");
         Console.ReadLine();
