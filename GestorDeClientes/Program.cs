@@ -20,7 +20,7 @@ class Program
             Console.WriteLine("Selecione a opção desejada:\n");
             Console.WriteLine("1 - Adicionar novo contato\n" +
                 "2 - Listar contatos adicionados\n" +
-                "3 - Editar contatos\n" +
+                "3 - Remover contatos\n" +
                 "4 - Sair do Gestor de Clientes\n");
 
             Menu menu = new Menu();
