@@ -1,4 +1,6 @@
-﻿namespace GestorDeClientes;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+
+namespace GestorDeClientes;
 
 class Program
 {
@@ -10,7 +12,7 @@ class Program
 
     static void Main(string[] args)
     {
-
+        Carregar();
         bool sairApp = false;
         while (!sairApp)
         {
@@ -78,5 +80,37 @@ class Program
         }
         System.Console.WriteLine("Aperte enter para sair");
         Console.ReadLine();
+    }
+    static void Salvar()
+    {
+        FileStream stream = new FileStream("contato.txt", FileMode.OpenOrCreate);
+        BinaryFormatter encoder = new BinaryFormatter();
+
+        encoder.Serialize(stream, contatos);
+
+        stream.Close();
+    }
+    static void Carregar()
+    {
+        FileStream stream = new FileStream("contato.txt", FileMode.OpenOrCreate);
+
+        try
+        {
+            BinaryFormatter encoder = new BinaryFormatter();
+
+            contatos = (List<Contato>)encoder.Deserialize(stream);
+
+            if (contatos == null)
+            {
+                contatos = new List<Contato>();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            contatos = new List<Contato>();
+        }
+
+        stream.Close();
     }
 }
