@@ -55,6 +55,7 @@ class Program
         cliente.cpf = Console.ReadLine();
 
         contatos.Add(cliente);
+        Salvar();
     }
 
     static void Listar()
@@ -83,7 +84,7 @@ class Program
     }
     static void Salvar()
     {
-        FileStream stream = new FileStream("contato.txt", FileMode.OpenOrCreate);
+        FileStream stream = new FileStream("contato.dat", FileMode.OpenOrCreate);
         BinaryFormatter encoder = new BinaryFormatter();
 
         encoder.Serialize(stream, contatos);
@@ -92,7 +93,7 @@ class Program
     }
     static void Carregar()
     {
-        FileStream stream = new FileStream("contato.txt", FileMode.OpenOrCreate);
+        FileStream stream = new FileStream("contato.dat", FileMode.OpenOrCreate);
 
         try
         {
