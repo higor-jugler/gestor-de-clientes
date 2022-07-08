@@ -8,7 +8,7 @@ class Program
     struct Contato { public string nome, email, cpf; }
     static List<Contato> contatos = new List<Contato>();
 
-    enum Menu { Adicionar = 1, Listar = 2, Editar = 3, Sair = 4 }
+    enum Menu { Adicionar = 1, Listar = 2, Remover = 3, Sair = 4 }
 
     static void Main(string[] args)
     {
@@ -34,7 +34,8 @@ class Program
                 case Menu.Listar:
                     Listar();
                     break;
-                case Menu.Editar:
+                case Menu.Remover:
+                    Remover();
                     break;
                 case Menu.Sair:
                     sairApp = true;
@@ -57,7 +58,6 @@ class Program
         contatos.Add(cliente);
         Salvar();
     }
-
     static void Listar()
     {
         if (contatos.Count > 0)
@@ -113,5 +113,20 @@ class Program
         }
 
         stream.Close();
+    }
+    static void Remover()
+    {
+        Console.WriteLine("Digite o valor de ID desejado para excluir o dado: ");
+        Listar();
+        int id = int.Parse(Console.ReadLine());
+        if (id >= 0 && id < contatos.Count)
+        {
+            contatos.RemoveAt(id);
+            Salvar();
+        }
+        else
+        {
+            Console.WriteLine("ID inválido.");
+        }
     }
 }
